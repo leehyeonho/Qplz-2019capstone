@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+.body-chat {
+  padding-bottom: 0;
+}
+
+.chat-header,
+.chat-header a {
+  background-color: #a1c0d6;
+  width:100%;
+  height:100%;
+  color: black;
+}
+
+.chat-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat {
+  background-color: #a1c0d6;
+  height: 50vh;
+  padding-top: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.chat .date-divider {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 15px;
+}
+
+.chat__message {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chat__message-from-me {
+  justify-content: flex-end;
+}
+
+.chat__message-to-me img {
+  align-self: flex-start;
+}
+
+.chat__message-time {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.chat__message-from-me .chat__message-body {
+  background-color: #ffe934;
+  margin-left: 5px;
+}
+
+.chat__message-body {
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-right: 5px;
+}
+
+.chat__message-to-me img {
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat__message .chat__message-username {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.chat__message-center {
+  display: flex;
+  flex-direction: column;
+}
+
+.type-message {
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+  height: 45px;
+  background-color: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.type-message .fa-plus {
+  color: #b4b4b4;
+}
+
+.type-message__input {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.type-message__input input {
+  width: 100%;
+  padding: 10px;
+}
+
+.type-message__input .fa-smile-o {
+  position: absolute;
+  right: 40px;
+  color: #b4b4b4;
+}
+
+.type-message__input .record-message {
+  color: #523737;
+  background-color: #ffe934;
+  padding: 10px;
+  cursor: pointer;
+}
+	hr {
+  border: 2px solid #ffa01e;
+  border-radius: 50px;
+}
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  transition: 0.4s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+
+
+
+#navbar #logo {
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+#navbar-right {
+  float: right;
+}
+
+
+	</style>
+	
+<script type="text/javascript">
+    var host = "startbootstrap.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+      window.location.protocol = "https";
+  </script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Start Bootstrap">
+<meta name="google-site-verification" content="37Tru9bxB3NrqXCt6JT5Vx8wz2AJQ0G4TkC-j8WL3kw">
+
+<title>
+Qplz
+  </title>
+</head>
+<body class="preview-page">
+<script id="dsq-count-scr" src="//startbootstrap.disqus.com/count.js" async></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script>
+    $("#desktopToggle").on('click', function(e) {
+      e.preventDefault();
+      $(".iframe-preview").removeClass("iframe-preview-mobile");
+    });
+    $("#mobileToggle").on('click', function(e) {
+      e.preventDefault();
+      $(".iframe-preview").addClass("iframe-preview-mobile");
+    });
+  </script>
+	
+	<!-- Navigation -->
+	<div id="navbar">
+	
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar" stlye="position:fixed">
+	<a class="navbar-brand" href="/home/index"><H1><FONT color="orange">Q</FONT>plz</H1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText" stlye="position:fixed">
+    <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+    <span class="navbar-text">
+    <font color="orange"><%= current_user.userid %> 님&nbsp;&nbsp;&nbsp;</font>
+    </span>
+    </li>
+      <li class="nav-item">
+      <span class="navbar-text">
+      <%= link_to '스페이스 관리', space_show_path %>&nbsp;&nbsp;&nbsp;
+      </span>
+    </li>
+        <li class="nav-item">
+        <span class="navbar-text">
+        <%= link_to '로그아웃', logout_path, method:'delete' %>&nbsp;&nbsp;&nbsp;
+    </span>
+      </li>
+      </ul>
+      
+    <% else %>
+	  <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item active">
+        <a class="nav-link" href="#">로그인</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/member/signup"><font color="orange">회원가입</font></a>
+      </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>
+			
+	</div>
+
+  <!-- Header - set the background image for the header in the line below -->
+  <header class="top-header chat-header">
+
+    <!-- <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt=""> -->
+  
+    <br>
+
+
+<div>
+<div style="text-align: center;">
+    
+<!-- Dummy message we will be using this to create a new message -->
+
+<div class="chat__message chat__message-to-me" id="dummy_message" style="overflow:auto;">
+    <img src="/avatar.png" alt="" class="chat-message-avatar">      <div class="chat__message-center">
+    <h3 class="chat__message-username" id="username">
+    </h3>
+    <span class="chat__message-body" id="body">
+    <hr width="100%">
+    </span>
+  </div>
+  <span class="chat__message-time" id="time">
+  </span>
+    </div>
+        <div id="messages" style="height:500px;overflow-y:scroll;">
+        코드 : <%= params[:spacecode] %> 
+        <% @messages.each do |m| %>
+          <div class="chat__message chat__message-to-me" style="">
+      <img src="/avatar.png" alt="" class="chat-message-avatar">
+      <div class="chat__message-center">
+        <h3 class="chat__message-username"><%= m.userid %></h3>
+        <span class="chat__message-body">
+        <%= m.body %>
+        </span>
+      </div>
+      <span class="chat__message-time"><%= m.created_at.strftime('%Y-%m-%d %H:%M') %></span>
+    </div>
+    <% end %>
+        </div>
+    
+
+    
+  </div>
+  </div>
+  <div class="type-message">
+  <div class="type-message__input">
+  <%= form_for @message do |form| %>
+    <%= form.text_area :body, required: true, class: "type-message__input", data: { message: true } %>
+  <% end %>
+    <button class="record-message"">
+    전송
+    </button>
+  </div>
+</div>
+  </header>
+  <script>
+  $(document).ready(function(){
+    $('#messages').animate({
+        scrollTop: $('#messages')[0].scrollHeight}, 200);
+});
+     $('[data-message=true]').on('keypress', function(event, param1){
+      
+     var user = '<%= escape_javascript params[:nickname] %>';
+      var id = '<%= escape_javascript params[:spacecode] %>';
+          
+        if((param1 == 13 ||event.keyCode == 13) && event.target.value!= '') {
+          
+          var words = ["개새끼", "개새", "시발", "시바", "시벌", "씨발", "ㅅㅂ", "ㅄ", "노명운", "꺼져", "끄져", "새끼", "개소리", "닥쳐", "등신", "또라이", "미친", "병신", "보지", "자지", "빠가", "뻐큐", "썅", "샹", "빡대가리", "엠창", "아가리", "아갈", "염병", "옘병", "좆", "지랄", "후장", "호로", "후레", "호구"];
+          var i = 0;
+          for(var n=0;n<words.length;n++) {
+            if(event.target.value.indexOf(words[n]) != -1) {
+            event.target.value = '***욕설 감지***';
+            break;
+          }
+          }
+          if(event.target.value != '***욕설 감지***') {
+            App.chat.send_message(event.target.value, user, id);
+            event.target.value = '';
+          event.preventDefault();
+            $('#messages').animate({
+         scrollTop: $('#messages')[0].scrollHeight}, 200);
+          }
+          
+         }
+         
+      });
+      $('.record-message').click(function(){
+        $('[data-message=true]').trigger('keypress', '13');
+      });
+  </script>
+	  
+
+
+  <!-- Bootstrap core JavaScript -->
+	<script>
+// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar").style.padding = "0px 0px";
+  } else {
+    document.getElementById("navbar").style.padding = "0px 0px";
+  }
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

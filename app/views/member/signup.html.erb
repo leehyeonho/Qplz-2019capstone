@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+	hr {
+  border: 10px solid #ffa01e;
+  border-radius: 5px;
+}
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  transition: 0.4s;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+
+
+
+#navbar #logo {
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+#navbar-right {
+  float: right;
+}
+
+@media screen and (max-width: 200px) {
+  #navbar {
+    padding: 5px!important;
+  }
+  #navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  #navbar-right {
+    float: none;
+  }
+
+}
+  .orangebtn {
+    width: 
+    border: 1px solid black;
+    background-color: orange;
+    border-radius:5px;
+    color: white;
+    margin:10px auto;
+    text-align:center;
+    padding: 10px;
+  }
+  .orangebtn:hover {
+    background-color: white;
+    color: orange;
+  }
+	</style>
+	
+<script type="text/javascript">
+    var host = "startbootstrap.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+      window.location.protocol = "https";
+  </script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Start Bootstrap">
+<meta name="google-site-verification" content="37Tru9bxB3NrqXCt6JT5Vx8wz2AJQ0G4TkC-j8WL3kw">
+
+<title>
+Qplz
+  </title>
+</head>
+<body class="preview-page">
+<script id="dsq-count-scr" src="//startbootstrap.disqus.com/count.js" async></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+<script>
+    $("#desktopToggle").on('click', function(e) {
+      e.preventDefault();
+      $(".iframe-preview").removeClass("iframe-preview-mobile");
+    });
+    $("#mobileToggle").on('click', function(e) {
+      e.preventDefault();
+      $(".iframe-preview").addClass("iframe-preview-mobile");
+    });
+  </script>
+	
+	<!-- Navigation -->
+	<div id="navbar">
+	
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar" stlye="position:fixed">
+	<a class="navbar-brand" href="/home/index"><H1><FONT color="orange">Q</FONT>plz</H1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText" stlye="position:fixed">
+    <% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item">
+    <span class="navbar-text">
+    <font color="orange"><%= current_user.userid %> 님&nbsp;&nbsp;&nbsp;</font>
+    </span>
+    </li>
+      <li class="nav-item">
+      <span class="navbar-text">
+      <%= link_to '스페이스 관리', space_show_path %>&nbsp;&nbsp;&nbsp;
+      </span>
+    </li>
+        <li class="nav-item">
+        <span class="navbar-text">
+        <%= link_to '로그아웃', logout_path, method:'delete' %>&nbsp;&nbsp;&nbsp;
+    </span>
+      </li>
+      </ul>
+      
+    <% else %>
+	  <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item active">
+        <a class="nav-link" href="/home/index">로그인</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/member/signup"><font color="orange">회원가입</font></a>
+      </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>
+			
+	</div>
+
+  <!-- Header - set the background image for the header in the line below -->
+  <header class="py-5 bg-image-full" style="background-image: url('home_background2.jpg'); background-size: cover; ">
+
+    <!-- <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt=""> -->
+	
+	  
+	  <br>
+	  <br>
+	  <br>
+    <br>
+	  <center>
+    <form actions='member/signup' method='post' autocomplete="off">
+    <table class="table" style="font-size:1vh;background-color:rgba(0, 0, 0, 0.5);width:80%;height:80%;color:white;">
+          <thead>
+         
+          </thead>
+          <tbody>
+          <tr>
+          <td>기본사항</td>
+          <td></td>
+          <td>필수 입력사항</td>
+          </tr>
+            <tr>
+            <td>아이디</td>
+            <td>
+            <input type="text" class="form-control" id="userid" name="userid" placeholder="아이디 입력">
+            </td>
+            <td><FONT color="red">*</FONT> 영문 소문자 및 문자로 4~16자</td>
+            </tr>
+            <tr>
+            <td>비밀번호</td>
+            <td>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </td>
+            <td><FONT color="red">*</FONT> 영문 대소문자/숫자/특수문자 조합</td>
+            </tr>
+            <tr>
+            <td>비밀번호 확인</td>
+            <td>
+            <input type="password" class="form-control" id="passwordCheck" name="passwordCheck" placeholder="Password">
+            </td>
+            <td><FONT color="red">*</FONT> 위 비밀번호를 한번 더 입력하세요</td>
+            </tr>
+            <tr>
+            <td>기업명</td>
+            <td>
+            <input type="text" class="form-control" id="company" name="company" placeholder="기업명">
+            </td>
+            <td></td>
+            </tr>
+            <tr>
+            <td>연락처
+            </td>
+            <td>
+            <input type="tel" class="form-control" id="tel" name="tel" placeholder="전화번호" style="height:40px;" pattern="(010)-\d{4}-\d{4}" title="010-0000-0000" required="required">
+            </td>
+            <td><FONT color="red">*</FONT> ex) 010-XXXX-XXXX</td>
+            </tr>
+            <tr>
+            <td>이메일</td>
+            <td>
+            <input type="email" class="form-control" id="email" name="email" placeholder="email">
+            </td>
+            <td><FONT color="red">*</FONT> ex) qplz@qplz.com</td>
+            </tr>
+          </tbody>
+        </table>
+    <button type="submit" class="orangebtn hover">가입하기</button>
+  </form>
+  <a href="/home/index" class="btn btn-default">돌아가기</a>
+		  
+	  </center>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  
+  </header>
+
+  <script>
+// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar").style.padding = "0px 0px";
+  } else {
+    document.getElementById("navbar").style.padding = "0px 0px";
+  }
+}
+</script>
+</body>
+</html>
+
+
+
+
+

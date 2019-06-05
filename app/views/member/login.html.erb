@@ -1,0 +1,31 @@
+<form actions='member/signup' method='post'>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<a href="/home/index" class="btn btn-default">돌아가기</a>
+<table class="table">
+        <thead>
+          <tr>
+            <th>이메일</th>
+            <th>비밀번호</th>
+            <th>작성시간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @signups.each do |p| %>
+            <tr>
+              <td><%= p.email %></td>
+              <td><%= p.password %></td>
+              <td><%= p.created_at %></td>
+            </tr>
+              <% end %>
+        </tbody>
+      </table>
