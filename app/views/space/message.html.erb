@@ -85,18 +85,15 @@
 .type-message {
   width: 100%;
   bottom: 0;
-  position: fixed;
+  position: relative;
   height: 45px;
   background-color: rgba(0,0,0,0);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-top: 5px;
   padding-left: 10px;
   padding-right: 5px;
-}
-
-.type-message .fa-plus {
-  color: #b4b4b4;
 }
 
 .type-message__input {
@@ -109,12 +106,6 @@
 .type-message__input input {
   width: 100%;
   padding: 10px;
-}
-
-.type-message__input .fa-smile-o {
-  position: absolute;
-  right: 40px;
-  color: #b4b4b4;
 }
 
 .type-message__input .record-message {
@@ -132,6 +123,36 @@
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.tab-bar {
+  margin-top:80px;
+  background-color: #343a40;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #c1c1c1;
+}
+
+.tab-bar .tab-bar__tab {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  color: #f1f1f1;
+  transition: transform 0.3s linear;
+  padding: 1% 15% 1% 15%;
+}
+
+.tab-bar .tab-bar__tab:hover {
+  color: red;
+  transform: scale(1.1);
+  background-color: white;
+
+}
+
+.tab-bar .tab-bar__title {
+  font-size: 3vh;
 }
 
 #navbar {
@@ -184,7 +205,7 @@ body {
 Qplz
   </title>
 </head>
-<body class="preview-page">
+<body>
 <script id="dsq-count-scr" src="//startbootstrap.disqus.com/count.js" async></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
@@ -239,17 +260,19 @@ Qplz
     <% end %>
   </div>
 </nav>
-			
-	</div>
-
-  <!-- Header - set the background image for the header in the line below -->
-  <header class="top-header chat-header">
-
-    <!-- <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt=""> -->
-  
-    <br>
-
-
+  </div>
+  <header>
+  <nav class="tab-bar">
+ 
+    <a href="index.html" class="tab-bar__tab">
+      <span class="tab-bar__title">채팅</span>
+    </a>
+    <a href="chats.html" class="tab-bar__tab">
+      <span class="tab-bar__title">설문조사</span>
+    </a>
+  </nav>
+  </herder>
+<main class="top-header chat-header">
 <div>
 <div style="text-align: center;">
     
@@ -260,14 +283,14 @@ Qplz
     <h3 class="chat__message-username" id="username">
     </h3>
     <span class="chat__message-body" id="body">
-    <hr width="100%">
+    코드 : <%= params[:spacecode] %> 
     </span>
   </div>
   <span class="chat__message-time" id="time">
   </span>
     </div>
         <div id="messages" style="height:500px;overflow-y:scroll;">
-        코드 : <%= params[:spacecode] %> 
+        
         <% @messages.each do |m| %>
           <div class="chat__message chat__message-to-me" style="">
       <img src="/avatar.png" alt="" class="chat-message-avatar">
@@ -286,17 +309,20 @@ Qplz
     
   </div>
   </div>
+
+  </main>
   <div class="type-message">
   <div class="type-message__input">
   <%= form_for @message do |form| %>
-    <%= form.text_area :body, required: true, class: "type-message__input", data: { message: true } %>
+    <%= form.text_field :body, required: true, class: "type-message__input", data: { message: true } %>
   <% end %>
-    <button class="record-message"">
+  <span>
+    <button class="record-message">
     전송
     </button>
+    </span>
   </div>
 </div>
-  </header>
   <script>
   $(document).ready(function(){
     $('#messages').animate({
@@ -322,7 +348,7 @@ Qplz
             event.target.value = '';
           event.preventDefault();
             $('#messages').animate({
-         scrollTop: $('#messages')[0].scrollHeight}, 200);
+         scrollTop: $('#messages')[0].scrollHeight+200}, 200);
           }
           
          }
